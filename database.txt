@@ -18,17 +18,17 @@ dotnet tool update --global dotnet-ef
 
 
 dotnet ef migrations add InitialCreate --context NpgContext
-dotnet ef migrations add lenghtdata
+dotnet ef database update --context NpgContext
 
 dotnet ef migrations add InitialCreate --context MpCalculateContext
-
+dotnet ef database update --context MpCalculateContext
 
 Build started...
 Build succeeded.
 The Entity Framework tools version '6.0.7' is older than that of the runtime '6.0.8'. Update the tools for the latest features and bug fixes. See https://aka.ms/AAc1fbw for more information.
 Done. To undo this action, use 'ef migrations remove'
 
-dotnet ef database update --context MpCalculateContext
+
 
 
 SELECT  'DROP TABLE [' + name + '];'

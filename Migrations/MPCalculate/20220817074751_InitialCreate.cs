@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace TimecardServices.Migrations
+namespace TimecardServices.Migrations.MPCalculate
 {
     public partial class InitialCreate : Migration
     {

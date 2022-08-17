@@ -43,7 +43,7 @@ namespace TimecardServices.Workers
                 }
 
 
-                await Task.Delay(30000, stoppingToken);
+                await Task.Delay(Parameter.Scantime*1000, stoppingToken);
             }
         }
 

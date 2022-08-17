@@ -15,9 +15,12 @@ namespace TimecardServices.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS,1433;user id=Admin;password=Admin; Database =timecard");
+            //optionsBuilder.UseSqlServer("Server=192.168.101.101\\SQLEXPRESS,1433;user id=Admin;password=Admin; Database =mp_timecard");
+            //optionsBuilder.UseSqlServer("Server=192.168.101.101\\SQLEXPRESS,1433;user id=Admin;password=Admin; Database =mp_timecard");
 
-            optionsBuilder.UseNpgsql("Server = localhost;User Id = postgres;Password = admin;Port=5432;Database = MpCalcuateTimecard;Pooling = false;Timeout = 300;CommandTimeout = 300");
+
+            //optionsBuilder.UseNpgsql("Server = localhost;User Id = postgres;Password = admin;Port=5432;Database = mp_timecard;Pooling = false;Timeout = 300;CommandTimeout = 300");
+            optionsBuilder.UseNpgsql("Server = 192.168.101.101;User Id = postgres;Password = admin;Port=5432;Database = mp_timecard;Pooling = false;Timeout = 300;CommandTimeout = 300");
 
 
         }

@@ -11,5 +11,6 @@ namespace TimecardServices.DTO
         public string UploadUrl { get; set; } = null!;
         public string BackupFolderName { get; set; } = null!;
         public bool HistoryOnOff { get; set; } =true;
+        public int ScanTime { get; set; } 
     }
 }

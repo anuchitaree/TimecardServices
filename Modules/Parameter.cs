@@ -23,6 +23,8 @@ namespace TimecardServices.Modules
        
         public static string UploadUrl = "";   //depend on user
 
+        public static Int32 Scantime = 5;
+
     }
 }
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TimecardServices.Data;
 using TimecardServices.Models;
+using TimecardServices.Modules;
 
 namespace TimecardServices.Workers
 {
@@ -75,7 +76,7 @@ namespace TimecardServices.Workers
                 }
 
 
-                await Task.Delay(30000, stoppingToken);
+                await Task.Delay(Parameter.Scantime *1000, stoppingToken);
             }
         }
     }

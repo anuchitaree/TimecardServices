@@ -9,10 +9,10 @@ using TimecardServices.Data;
 
 #nullable disable
 
-namespace TimecardServices.Migrations
+namespace TimecardServices.Migrations.MPCalculate
 {
     [DbContext(typeof(MPCalculateContext))]
-    [Migration("20220815031752_InitialCreate")]
+    [Migration("20220817074751_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

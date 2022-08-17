@@ -5,9 +5,7 @@ IHost host = Host.CreateDefaultBuilder(args)
     .UseWindowsService()
     .ConfigureServices(services =>
     {
-        //services.AddHostedService<Worker>();
-        //services.AddHostedService<UploadDataWorker>();
-
+       
         services.AddHostedService<UploadDatabaseWorker>();
         services.AddHostedService<TransferFileWorker>();
         services.AddHostedService<InsertDataWorker>(); 

@@ -32,6 +32,7 @@ namespace TimecardServices.Modules
                         Parameter.HistoryOnOff = items[0].HistoryOnOff;
                         Parameter.BackupFolder = items[0].BackupFolderName;
                         Parameter.UploadUrl = items[0].UploadUrl;
+                        Parameter.Scantime = Convert.ToInt32(items[0].ScanTime);
                     }
                 }
                 else
@@ -42,6 +43,7 @@ namespace TimecardServices.Modules
                         HistoryOnOff = true,
                         BackupFolderName = @"C:\TaffTimecard",
                         UploadUrl = "http://localhost:6500/api/example.com",
+                        ScanTime=60,
                     });
                     string json = JsonConvert.SerializeObject(settingdata.ToArray(), Formatting.Indented);
                     File.WriteAllText(settingFile, json);

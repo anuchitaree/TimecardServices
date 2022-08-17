@@ -8,7 +8,7 @@ sc.exe delete TaffTimeCard
 
 
 sc.exe create TaffTimecard binpath= C:\TaffTimecard\TimecardService.exe start=auto displayname="Taff Timecard" password="4911"
-sc.exe description TaffTimecard "Transfer all text files every 60 second to Postgresql and send data via http of MPCalculator API or send direct database"
+sc.exe description TaffTimecard "Transfer all text files every 60 second to Postgresql and send data to mp_timecard database, you setup scantime"
 
 
 
