@@ -2,14 +2,11 @@
 
 
 Power shell
-sc.exe create TaffTimeCard binpath=C:\Temp\workerservice\TimecardServices.exe start=auto
-sc.exe description TaffTimeCard ""
+
+
+sc.exe create TaffTimecard binpath= C:\TaffTimecard\dotnet\TimecardServices.exe start=auto displayname="Taff Timecard" password="4911"
+sc.exe description TaffTimecard "Transfer all text files every 60 second to Postgresql and send data to MSSQL mp_timecard database, you setup scantime"
 sc.exe delete TaffTimeCard
-
-
-sc.exe create TaffTimecard binpath= C:\TaffTimecard\TimecardService.exe start=auto displayname="Taff Timecard" password="4911"
-sc.exe description TaffTimecard "Transfer all text files every 60 second to Postgresql and send data to mp_timecard database, you setup scantime"
-
 
 
 
@@ -26,6 +23,9 @@ sc.exe [<servername>] create [<servicename>]
 [password= <password>]
 
 
-sc.exe create TaffTimecard binpath= C:\TaffTimecard\workers\TimecardServices.exe start=auto
+sc.exe create TaffTimecard binpath= C:\TaffTimecard\dotnet\TimecardServices.exe start=auto
+sc.exe description TaffTimeCard ""
+sc.exe delete TaffTimeCard
+
 
 C:\Taff Timecard\workerservice

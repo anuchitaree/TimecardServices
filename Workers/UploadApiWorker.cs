@@ -48,10 +48,10 @@ namespace TimecardServices.Workers
                         {
                             if (existRecords.Count > 0)
                             {
-                                List<MpCalculateTimecardRecord> newRecords = new();
+                                List<MpTimecardRecord> newRecords = new();
                                 foreach (var s in existRecords)
                                 {
-                                    var record = new MpCalculateTimecardRecord()
+                                    var record = new MpTimecardRecord()
                                     {
                                         Id = s.Id,
                                         EmpId = s.EmpId,

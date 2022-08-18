@@ -40,10 +40,10 @@ namespace TimecardServices.Workers
                         {
                             if (existRecords.Count > 0)
                             {
-                                List<MpCalculateTimecardRecord> newRecords = new();
+                                List<MpTimecardRecord> newRecords = new();
                                 foreach (var s in existRecords)
                                 {
-                                    var record = new MpCalculateTimecardRecord()
+                                    var record = new MpTimecardRecord()
                                     {
                                         Id = s.Id,
                                         EmpId = s.EmpId,
@@ -54,9 +54,9 @@ namespace TimecardServices.Workers
                                     newRecords.Add(record);
 
                                 }
-                                using (var dbmp = new MPCalculateContext())
+                                using (var dbmp = new MsContext())
                                 {
-                                    await dbmp.MpCalculateTimecardRecords.AddRangeAsync(newRecords);
+                                    await dbmp.MpTimecardRecords.AddRangeAsync(newRecords);
                                     await dbmp.SaveChangesAsync();
                                 }
                                 foreach (var update in existRecords)

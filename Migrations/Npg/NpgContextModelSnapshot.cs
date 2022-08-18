@@ -2,20 +2,18 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TimecardServices.Data;
 
 #nullable disable
 
-namespace TimecardServices.Migrations
+namespace TimecardServices.Migrations.Npg
 {
     [DbContext(typeof(NpgContext))]
-    [Migration("20220817074744_InitialCreate")]
-    partial class InitialCreate
+    partial class NpgContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

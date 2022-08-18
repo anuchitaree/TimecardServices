@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TimecardServices.Models
 {
-    public class MpCalculateTimecardRecord
+    public class MpTimecardRecord
     {
         [Key]
         public Guid Id { get; set; }
@@ -20,6 +20,7 @@ namespace TimecardServices.Models
 
         [Required,MaxLength(4)]
         public string MachineSn { get; set; } = null!;
+
 
     }
 }

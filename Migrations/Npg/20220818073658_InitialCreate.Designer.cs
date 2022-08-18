@@ -9,10 +9,10 @@ using TimecardServices.Data;
 
 #nullable disable
 
-namespace TimecardServices.Migrations.MPCalculate
+namespace TimecardServices.Migrations.Npg
 {
-    [DbContext(typeof(MPCalculateContext))]
-    [Migration("20220817074751_InitialCreate")]
+    [DbContext(typeof(NpgContext))]
+    [Migration("20220818073658_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,31 @@ namespace TimecardServices.Migrations.MPCalculate
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("TimecardServices.Models.MpCalculateTimecardRecord", b =>
+            modelBuilder.Entity("TimecardServices.Models.LogRecord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Decription")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateTime>("Registdatetime")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Result")
+                        .IsRequired()
+                        .HasMaxLength(5)
+                        .HasColumnType("character varying(5)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LogRecords");
+                });
+
+            modelBuilder.Entity("TimecardServices.Models.TimecardRecord", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,9 +72,12 @@ namespace TimecardServices.Migrations.MPCalculate
                         .HasMaxLength(4)
                         .HasColumnType("character varying(4)");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("boolean");
+
                     b.HasKey("Id");
 
-                    b.ToTable("MpCalculateTimecardRecords");
+                    b.ToTable("TimecardRecords");
                 });
 #pragma warning restore 612, 618
         }

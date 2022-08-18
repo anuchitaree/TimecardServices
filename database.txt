@@ -6,22 +6,23 @@ dotnet add package Microsoft.EntityFrameworkCore.Relational --version 6.0.8
 dotnet add package Microsoft.EntityFrameworkCore.Tools --version 6.0.8
 
 dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL --version 6.0.6
+dotnet add package Microsoft.Extensions.Hosting.WindowsServices --version 6.0.0
 
+dotnet add package Microsoft.AspNet.WebApi.SelfHost --version 5.2.9
 
 for dotnet framework
 dotnet add package Npgsql --version 6.0.6
 
 
-
-
 dotnet tool update --global dotnet-ef
 
+
+dotnet ef migrations add InitialCreate --context MsContext
+dotnet ef database update --context MsContext
 
 dotnet ef migrations add InitialCreate --context NpgContext
 dotnet ef database update --context NpgContext
 
-dotnet ef migrations add InitialCreate --context MpCalculateContext
-dotnet ef database update --context MpCalculateContext
 
 Build started...
 Build succeeded.
