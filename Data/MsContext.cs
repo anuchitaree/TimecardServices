@@ -15,7 +15,7 @@ namespace TimecardServices.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=49.229.106.33\\SQLEXPRESS,10000;user id=Admin;password=Admin; Database =mp_timecard");
+            optionsBuilder.UseSqlServer("Server=0.0.0.0\\SQLEXPRESS,0;user id=Admin;password=Admin; Database =mp_timecard");
          
         }
 
