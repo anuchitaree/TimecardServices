@@ -19,11 +19,14 @@ namespace TimecardServices.Modules
 
         public static bool HistoryOnOff = true; //depend on user
         public static string BackupFolder = @"D:\TaffBackup";  //depend on user
-        public static string HistoryFolder = "";
-       
-        public static string UploadUrl = "";   //depend on user
+        public static string HistoryFolder = "history";
 
-        public static Int32 Scantime = 5;
+        public static string UploadUrl = "https://localhost:6557/api/MPCalculation/Timecard/recordtime"; //"http://   /transfer_function_raw_data";   //depend on user
+
+        public static Int32 Scantime = 300;
+
+
+
 
     }
 }

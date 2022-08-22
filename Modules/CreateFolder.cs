@@ -28,7 +28,7 @@ namespace TimecardServices.Modules
                     {
                         string json = r.ReadToEnd();
                         List<Settings> items = JsonConvert.DeserializeObject<List<Settings>>(json)!;
-
+                        Parameter.UploadUrl = items[0].UploadUrl;
                         Parameter.HistoryOnOff = items[0].HistoryOnOff;
                         Parameter.BackupFolder = items[0].BackupFolderName;
                         Parameter.Scantime = Convert.ToInt32(items[0].ScanTime);
@@ -39,9 +39,10 @@ namespace TimecardServices.Modules
                     var settingdata = new List<Settings>();
                     settingdata.Add(new Settings()
                     {
+                        UploadUrl = Parameter.UploadUrl,
                         HistoryOnOff = true,
                         BackupFolderName = @"C:\TaffTimecard",
-                        ScanTime=5,
+                        ScanTime = 5,
                     });
                     string json = JsonConvert.SerializeObject(settingdata.ToArray(), Formatting.Indented);
                     File.WriteAllText(settingFile, json);

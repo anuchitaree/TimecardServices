@@ -2,10 +2,6 @@
 using TimecardServices.Workers;
 
 
-
-
-
-
 IHost host = Host.CreateDefaultBuilder(args)
     .UseWindowsService()
     .ConfigureServices(services =>
@@ -14,7 +10,9 @@ IHost host = Host.CreateDefaultBuilder(args)
         
         services.AddHostedService<InsertDataWorker>(); 
 
-        services.AddHostedService<UploadDatabaseWorker>();
+        //services.AddHostedService<UploadDatabaseWorker>();
+
+        services.AddHostedService<UploadApiWorker>();
 
     })
    
