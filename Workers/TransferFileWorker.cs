@@ -52,11 +52,11 @@ namespace TimecardServices.Workers
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex.Message, "This is error");
+                    _logger.LogError(ex.Message, "This is error of TransferFileWorker");
                 }
 
 
-                await Task.Delay(Parameter.Scantime *1000, stoppingToken);
+                await Task.Delay((Parameter.Scantime+10) *1000, stoppingToken);
             }
         }
 

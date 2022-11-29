@@ -8,11 +8,11 @@ IHost host = Host.CreateDefaultBuilder(args)
     {
         services.AddHostedService<TransferFileWorker>();
         
-        services.AddHostedService<InsertDataWorker>(); 
+        services.AddHostedService<InsertDataWorker>();
 
-        //services.AddHostedService<UploadDatabaseWorker>();
 
-        services.AddHostedService<UploadApiWorker>();
+        services.AddHostedService<HttpPostWorker>();
+
 
     })
    

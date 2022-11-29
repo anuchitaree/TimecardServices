@@ -11,17 +11,19 @@ namespace TimecardServices.Modules
             {
                 if (!Directory.Exists(Parameter.BaseFolder))
                     Directory.CreateDirectory(Parameter.BaseFolder);
+
                 if (!Directory.Exists(Parameter.FromFolder))
                     Directory.CreateDirectory(Parameter.FromFolder);
 
 
                 if (!Directory.Exists(Parameter.InstallFolder))
                     Directory.CreateDirectory(Parameter.InstallFolder);
+
                 if (!Directory.Exists(Parameter.ProcessFolder))
                     Directory.CreateDirectory(Parameter.ProcessFolder);
 
+                string settingFile = Environment.CurrentDirectory + "\\www\\conf\\settings.json";
 
-                string settingFile = String.Format($"{Parameter.InstallFolder}\\settings.json");
                 if (File.Exists(settingFile))
                 {
                     using (StreamReader r = new StreamReader(settingFile))
@@ -42,7 +44,7 @@ namespace TimecardServices.Modules
                         UploadUrl = Parameter.UploadUrl,
                         HistoryOnOff = true,
                         BackupFolderName = @"C:\TaffTimecard",
-                        ScanTime = 5,
+                        ScanTime = 60,
                     });
                     string json = JsonConvert.SerializeObject(settingdata.ToArray(), Formatting.Indented);
                     File.WriteAllText(settingFile, json);
@@ -51,11 +53,16 @@ namespace TimecardServices.Modules
 
                 if (!Directory.Exists(Parameter.BackupFolder))
                     Directory.CreateDirectory(Parameter.BackupFolder);
+
                 string backup = String.Format($"{Parameter.BackupFolder}\\history");
+                
                 if (!Directory.Exists(backup))
                     Directory.CreateDirectory(backup);
+                
                 string year = DateTime.Now.ToString("yyyy");
+                
                 Parameter.HistoryFolder = String.Format($"{backup}\\{year}");
+                
                 if (!Directory.Exists(Parameter.HistoryFolder))
                     Directory.CreateDirectory(Parameter.HistoryFolder);
 

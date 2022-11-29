@@ -16,18 +16,10 @@ dotnet add package Npgsql --version 6.0.6
 
 dotnet tool update --global dotnet-ef
 
+dotnet ef migrations add InitialCreate --context TimeCardContext
 
-dotnet ef migrations add InitialCreate --context MsContext
-dotnet ef database update --context MsContext
+dotnet ef database update --context TimeCardContext
 
-dotnet ef migrations add InitialCreate --context NpgContext
-dotnet ef database update --context NpgContext
-
-
-Build started...
-Build succeeded.
-The Entity Framework tools version '6.0.7' is older than that of the runtime '6.0.8'. Update the tools for the latest features and bug fixes. See https://aka.ms/AAc1fbw for more information.
-Done. To undo this action, use 'ef migrations remove'
 
 
 

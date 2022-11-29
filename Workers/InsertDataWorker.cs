@@ -19,11 +19,11 @@ namespace TimecardServices.Workers
             {
                 try
                 {
-                    using (var db = new NpgContext())
+                    using (var db = new TimeCardContext())
                     {
                         if (db.Database.CanConnect())
                         {
-                            _logger.LogInformation("The Postgres database is connected.");
+                            _logger.LogInformation("The database is connected.");
                             string path = Parameter.ProcessFolder + "\\";
                             string[] fileLists = Directory.GetFiles(path);
                             if (fileLists.Length > 0)
@@ -39,7 +39,7 @@ namespace TimecardServices.Workers
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex.Message, "This is error");
+                    _logger.LogError(ex.Message, "This is error of InsertDataWorker");
                 }
 
 
@@ -88,7 +88,7 @@ namespace TimecardServices.Workers
 
                         var input = new TimecardRecord()
                         {
-                            Id = Guid.NewGuid(),
+                            Id = Guid.NewGuid().ToString(),
                             EmpId = emp,
                             Date = (new DateTime(yy, mm, dd, hh, m, 0)),
                             Direction = direction,
@@ -100,7 +100,7 @@ namespace TimecardServices.Workers
                 }
 
 
-                using (var db = new NpgContext())
+                using (var db = new TimeCardContext())
                 {
                     await db.TimecardRecords.AddRangeAsync(newRecord);
                     await db.SaveChangesAsync();
@@ -192,12 +192,12 @@ namespace TimecardServices.Workers
                     string decription = processname.Length < 100 ? processname : processname.Substring(0, 100);
                     var newlog = new LogRecord()
                     {
-                        Id = Guid.NewGuid(),
+                        Id = Guid.NewGuid().ToString(),
                         Registdatetime = date,
                         Result = result,
                         Decription = decription
                     };
-                    using (var db = new NpgContext())
+                    using (var db = new TimeCardContext())
                     {
                         await db.LogRecords.AddAsync(newlog);
                         await db.SaveChangesAsync();

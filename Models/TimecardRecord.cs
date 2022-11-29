@@ -7,7 +7,7 @@ namespace TimecardServices.Models
     public class TimecardRecord
     {
         [Key]
-        public Guid Id { get; set; }
+        public string Id { get; set; } = null!;
 
         [Required,MaxLength(7)]
         public string EmpId { get; set; } = null!;

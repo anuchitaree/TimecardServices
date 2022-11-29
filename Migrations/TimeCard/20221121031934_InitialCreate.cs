@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace TimecardServices.Migrations.Npg
+namespace TimecardServices.Migrations.TimeCard
 {
     public partial class InitialCreate : Migration
     {
@@ -13,10 +13,10 @@ namespace TimecardServices.Migrations.Npg
                 name: "LogRecords",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Registdatetime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Result = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: false),
-                    Decription = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Registdatetime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Result = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
+                    Decription = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,12 +27,12 @@ namespace TimecardServices.Migrations.Npg
                 name: "TimecardRecords",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    EmpId = table.Column<string>(type: "character varying(7)", maxLength: 7, nullable: false),
-                    Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Direction = table.Column<string>(type: "character varying(1)", maxLength: 1, nullable: false),
-                    MachineSn = table.Column<string>(type: "character varying(4)", maxLength: 4, nullable: false),
-                    Status = table.Column<bool>(type: "boolean", nullable: false)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    EmpId = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Direction = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
+                    MachineSn = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -7,7 +7,7 @@ namespace TimecardServices.Models
     {
 
         [Key]
-        public Guid Id { get; set; }
+        public string? Id { get; set; } 
 
         [Required]
         public DateTime Registdatetime { get; set; }

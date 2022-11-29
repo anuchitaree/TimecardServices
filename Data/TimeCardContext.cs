@@ -3,7 +3,7 @@ using TimecardServices.Models;
 
 namespace TimecardServices.Data
 {
-    public class NpgContext : DbContext
+    public class TimeCardContext : DbContext
     {
 
         public DbSet<TimecardRecord> TimecardRecords { get; set; } = null!;
@@ -11,8 +11,8 @@ namespace TimecardServices.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Server = localhost;User Id = postgres;Password = admin;Port=5432;Database = timecard;Pooling = false;Timeout = 300;CommandTimeout = 300");
 
+            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS,1433;user id=Admin;password=Admin; Database =Timecard;Encrypt=True;TrustServerCertificate=True");
         }
 
 

@@ -25,7 +25,7 @@ namespace TimecardServices.Modules
 
         public static Int32 Scantime = 300;
 
-
+        public static Int32 UploadProdRecord = 60;
 
 
     }
