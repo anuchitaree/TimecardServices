@@ -9,6 +9,14 @@ namespace TimecardServices.Modules
         {
             try
             {
+                Param.FromFolder = $"{Param.BaseFolder}\\sources";
+
+                Param.ProcessFolder= $"{Param.BaseFolder}\\.proc";
+
+                Param.InstallFolder = $"{Param.BaseFolder}\\dotnet";
+
+                Param.HistoryFolder = $"{Param.BackupFolder}\\history";
+
                 if (!Directory.Exists(Param.BaseFolder))
                     Directory.CreateDirectory(Param.BaseFolder);
 

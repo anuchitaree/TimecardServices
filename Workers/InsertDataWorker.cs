@@ -15,25 +15,14 @@ namespace TimecardServices.Workers
         public InsertDataWorker(ILogger<InsertDataWorker> logger, IConfiguration configuration)
         {
             _logger = logger;
+
             _configuration = configuration;
         }
 
 
         public override Task StartAsync(CancellationToken cancellationToken)
         {
-            Param.DbConnnectionString = _configuration.GetValue<string>("ConnectionString");
-
-            Param.HttpPostUrl = _configuration.GetValue<string>("Settings:HttpPostUrl");
-
-            Param.BackupFolder = _configuration.GetValue<string>("Settings: BackupFolderName");
-
-            Param.HistoryOnOff = _configuration.GetValue<bool>("Settings: HistoryOnOff");
-
-            Param.ScanLoopTime = _configuration.GetValue<int>("Settings:ScanLoopTime");
-
-            Param.BaseFolder = _configuration.GetValue<string>("Settings: BaseFolder");
-
-
+            Initialize();
             return base.StartAsync(cancellationToken);
         }
 
@@ -76,6 +65,22 @@ namespace TimecardServices.Workers
         }
 
 
+        private void Initialize()
+        {
+            Param.DbConnnectionString = _configuration.GetValue<string>("ConnectionString");
+
+            Param.HttpPostUrl = _configuration.GetValue<string>("Settings:HttpPostUrl");
+
+            Param.BackupFolder = _configuration.GetValue<string>("Settings:BackupFolderName");
+
+            Param.HistoryOnOff = _configuration.GetValue<bool>("Settings:HistoryOnOff");
+
+            Param.ScanLoopTime = _configuration.GetValue<int>("Settings:ScanLoopTime");
+
+            Param.BaseFolder = _configuration.GetValue<string>("Settings:BaseFolder");
+
+            CreateFolder.IsFolder();
+        }
 
         private async Task InsertDateOneFile(string filename)
         {

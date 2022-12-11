@@ -38,6 +38,8 @@ namespace TimecardServices.Workers
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            await Task.Delay(2000);
+
             while (!stoppingToken.IsCancellationRequested)
             {
                 //Stopwatch stopwatch = new Stopwatch();

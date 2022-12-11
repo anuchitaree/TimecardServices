@@ -6,13 +6,13 @@
         public static string BaseFolder = "";
 
         // Keep .taf from TAFF Machine c:\TaffTimecard\sources
-        public static string FromFolder = String.Format($"{BaseFolder}\\sources");
+        public static string FromFolder = String.Empty; // String.Format($"{BaseFolder}\\sources");
 
         // Processing on this folder c:\TaffTimecard\.proc
-        public static string ProcessFolder = String.Format($"{BaseFolder}\\.proc");
+        public static string ProcessFolder = String.Empty; //  String.Format($"{BaseFolder}\\.proc");
 
         // Processing on this folder  c:\TaffTimecard\dotnet
-        public static string InstallFolder = String.Format($"{BaseFolder}\\dotnet");
+        public static string InstallFolder = String.Empty; //  String.Format($"{BaseFolder}\\dotnet");
 
         public static bool HistoryOnOff = true; //depend on user
 
@@ -28,7 +28,7 @@
         public static string BackupFolder = "";  //depend on user
 
         // if HistoryOnOff is true, files are kept here c:\TaffTimecard\history
-        public static string HistoryFolder = $"{BackupFolder}\\history";
+        public static string HistoryFolder = String.Empty; //  $"{BackupFolder}\\history";
 
 
 

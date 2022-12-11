@@ -12,7 +12,6 @@ namespace TimecardServices.Workers
 
         public override Task StartAsync(CancellationToken cancellationToken)
         {
-            CreateFolder.IsFolder();
 
             return base.StartAsync(cancellationToken);
         }
@@ -20,11 +19,13 @@ namespace TimecardServices.Workers
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+           await Task.Delay(1000);
+
             while (!stoppingToken.IsCancellationRequested)
             {
                 try
                 {
-                    CreateFolder.IsFolder();
+                    //CreateFolder.IsFolder();
 
                     string destinationPath = Param.ProcessFolder;
 
