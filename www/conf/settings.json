@@ -3,6 +3,7 @@
     "UploadUrl": "http://localhost:8081/api/v1/MPCalculation/Timecard/recordtime",
     "BackupFolderName": "C:\\TaffTimecard",
     "HistoryOnOff": true,
+
     "ScanTime": 3600
   }
 ]

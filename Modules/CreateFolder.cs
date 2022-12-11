@@ -9,62 +9,62 @@ namespace TimecardServices.Modules
         {
             try
             {
-                if (!Directory.Exists(Parameter.BaseFolder))
-                    Directory.CreateDirectory(Parameter.BaseFolder);
+                if (!Directory.Exists(Param.BaseFolder))
+                    Directory.CreateDirectory(Param.BaseFolder);
 
-                if (!Directory.Exists(Parameter.FromFolder))
-                    Directory.CreateDirectory(Parameter.FromFolder);
-
-
-                if (!Directory.Exists(Parameter.InstallFolder))
-                    Directory.CreateDirectory(Parameter.InstallFolder);
-
-                if (!Directory.Exists(Parameter.ProcessFolder))
-                    Directory.CreateDirectory(Parameter.ProcessFolder);
-
-                string settingFile = Environment.CurrentDirectory + "\\www\\conf\\settings.json";
-
-                if (File.Exists(settingFile))
-                {
-                    using (StreamReader r = new StreamReader(settingFile))
-                    {
-                        string json = r.ReadToEnd();
-                        List<Settings> items = JsonConvert.DeserializeObject<List<Settings>>(json)!;
-                        Parameter.UploadUrl = items[0].UploadUrl;
-                        Parameter.HistoryOnOff = items[0].HistoryOnOff;
-                        Parameter.BackupFolder = items[0].BackupFolderName;
-                        Parameter.Scantime = Convert.ToInt32(items[0].ScanTime);
-                    }
-                }
-                else
-                {
-                    var settingdata = new List<Settings>();
-                    settingdata.Add(new Settings()
-                    {
-                        UploadUrl = Parameter.UploadUrl,
-                        HistoryOnOff = true,
-                        BackupFolderName = @"C:\TaffTimecard",
-                        ScanTime = 60,
-                    });
-                    string json = JsonConvert.SerializeObject(settingdata.ToArray(), Formatting.Indented);
-                    File.WriteAllText(settingFile, json);
-                }
+                if (!Directory.Exists(Param.FromFolder))
+                    Directory.CreateDirectory(Param.FromFolder);
 
 
-                if (!Directory.Exists(Parameter.BackupFolder))
-                    Directory.CreateDirectory(Parameter.BackupFolder);
+                if (!Directory.Exists(Param.InstallFolder))
+                    Directory.CreateDirectory(Param.InstallFolder);
 
-                string backup = String.Format($"{Parameter.BackupFolder}\\history");
+                if (!Directory.Exists(Param.ProcessFolder))
+                    Directory.CreateDirectory(Param.ProcessFolder);
+
+                //string settingFile = Environment.CurrentDirectory + "\\www\\conf\\settings.json";
+
+                //if (File.Exists(settingFile))
+                //{
+                //    using (StreamReader r = new StreamReader(settingFile))
+                //    {
+                //        string json = r.ReadToEnd();
+                //        List<Settings> items = JsonConvert.DeserializeObject<List<Settings>>(json)!;
+                //        Param.HttpPostUrl = items[0].HttpPostUrl;
+                //        Param.HistoryOnOff = items[0].HistoryOnOff;
+                //        Param.BackupFolder = items[0].BackupFolderName;
+                //        Param.ScanLoopTime = Convert.ToInt32(items[0].ScanLoopTime);
+                //    }
+                //}
+                //else
+                //{
+                //    var settingdata = new List<Settings>();
+                //    settingdata.Add(new Settings()
+                //    {
+                //        HttpPostUrl = Param.HttpPostUrl,
+                //        HistoryOnOff = true,
+                //        BackupFolderName = @"C:\TaffTimecard",
+                //        ScanLoopTime = 60,
+                //    });
+                //    string json = JsonConvert.SerializeObject(settingdata.ToArray(), Formatting.Indented);
+                //    File.WriteAllText(settingFile, json);
+                //}
+
+
+                if (!Directory.Exists(Param.BackupFolder))
+                    Directory.CreateDirectory(Param.BackupFolder);
+
+                //string backup = String.Format($"{Param.BackupFolder}\\history");
                 
-                if (!Directory.Exists(backup))
-                    Directory.CreateDirectory(backup);
+                if (!Directory.Exists(Param.HistoryFolder))
+                    Directory.CreateDirectory(Param.HistoryFolder);
                 
                 string year = DateTime.Now.ToString("yyyy");
                 
-                Parameter.HistoryFolder = String.Format($"{backup}\\{year}");
+                Param.HistoryFolder = String.Format($"{Param.HistoryFolder}\\{year}");
                 
-                if (!Directory.Exists(Parameter.HistoryFolder))
-                    Directory.CreateDirectory(Parameter.HistoryFolder);
+                if (!Directory.Exists(Param.HistoryFolder))
+                    Directory.CreateDirectory(Param.HistoryFolder);
 
 
 

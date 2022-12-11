@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using TimecardServices.Data;
+using TimecardServices.DTO;
 using TimecardServices.Models;
 using TimecardServices.Modules;
 
@@ -8,10 +9,34 @@ namespace TimecardServices.Workers
     public class InsertDataWorker : BackgroundService
     {
         private readonly ILogger<InsertDataWorker> _logger;
-        public InsertDataWorker(ILogger<InsertDataWorker> logger)
+
+        private readonly IConfiguration _configuration;
+
+        public InsertDataWorker(ILogger<InsertDataWorker> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
+
+
+        public override Task StartAsync(CancellationToken cancellationToken)
+        {
+            Param.DbConnnectionString = _configuration.GetValue<string>("ConnectionString");
+
+            Param.HttpPostUrl = _configuration.GetValue<string>("Settings:HttpPostUrl");
+
+            Param.BackupFolder = _configuration.GetValue<string>("Settings: BackupFolderName");
+
+            Param.HistoryOnOff = _configuration.GetValue<bool>("Settings: HistoryOnOff");
+
+            Param.ScanLoopTime = _configuration.GetValue<int>("Settings:ScanLoopTime");
+
+            Param.BaseFolder = _configuration.GetValue<string>("Settings: BaseFolder");
+
+
+            return base.StartAsync(cancellationToken);
+        }
+
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -24,8 +49,11 @@ namespace TimecardServices.Workers
                         if (db.Database.CanConnect())
                         {
                             _logger.LogInformation("The database is connected.");
-                            string path = Parameter.ProcessFolder + "\\";
+
+                            string path = Param.ProcessFolder + "\\";
+
                             string[] fileLists = Directory.GetFiles(path);
+
                             if (fileLists.Length > 0)
                             {
                                 Parallel.ForEach(fileLists, filename =>
@@ -43,7 +71,7 @@ namespace TimecardServices.Workers
                 }
 
 
-                await Task.Delay(Parameter.Scantime*1000, stoppingToken);
+                await Task.Delay(Param.ScanLoopTime * 1000, stoppingToken);
             }
         }
 
@@ -54,6 +82,7 @@ namespace TimecardServices.Workers
             try
             {
                 string[] records = File.ReadAllText(filename).Split(new string[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+
                 List<TimecardRecord> newRecord = new();
 
                 foreach (string record in records)
@@ -105,7 +134,7 @@ namespace TimecardServices.Workers
                     await db.TimecardRecords.AddRangeAsync(newRecord);
                     await db.SaveChangesAsync();
                 }
-                if (Parameter.HistoryOnOff)
+                if (Param.HistoryOnOff)
                     await MoveFilesNameAsync(true, filename);
                 else
                     await DeleteFilesNameAsync(filename);
@@ -125,10 +154,10 @@ namespace TimecardServices.Workers
         private async Task MoveFilesNameAsync(bool result, string filename)
         {
             string file = Path.GetFileName(filename);
-            string historyfile = string.Format($"{Parameter.HistoryFolder}\\{file}");
+            string historyfile = string.Format($"{Param.HistoryFolder}\\{file}");
             string uuid = Guid.NewGuid().ToString();
 
-            string historyRenamefile = string.Format($"{Parameter.HistoryFolder}\\{uuid}-{file}");
+            string historyRenamefile = string.Format($"{Param.HistoryFolder}\\{uuid}-{file}");
 
             try
             {

@@ -11,11 +11,14 @@ namespace TimecardServices.Workers
 
         private HttpClient client;
         private readonly ILogger<HttpPostWorker> _logger;
+        private readonly IConfiguration _configuration;
 
-        public HttpPostWorker(ILogger<HttpPostWorker> logger)
+        public HttpPostWorker(ILogger<HttpPostWorker> logger, IConfiguration configuration)
         {
             _logger = logger;
             client = null!;
+            _configuration = configuration;
+
         }
 
         public override Task StartAsync(CancellationToken cancellationToken)
@@ -75,10 +78,10 @@ namespace TimecardServices.Workers
                                     string json = JsonConvert.SerializeObject(newRecords, Formatting.Indented);
                                     StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
-                                    var response = await client.PostAsync(Parameter.UploadUrl, httpContent);
+                                    var response = await client.PostAsync(Param.HttpPostUrl, httpContent);
                                     if (response.IsSuccessStatusCode)
                                     {
-                                        _logger.LogInformation("the website is up [ {0} ] Status code {statuscode}", Parameter.UploadUrl, response.StatusCode);
+                                        _logger.LogInformation("the website is up [ {0} ] Status code {statuscode}", Param.HttpPostUrl, response.StatusCode);
                                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
                                         {
                                             foreach (var update in existRecords)
@@ -100,7 +103,7 @@ namespace TimecardServices.Workers
                     }
                     catch (Exception ex)
                     {
-                        _logger.LogError($"{ex.Message} of \n { Parameter.UploadUrl} \n");
+                        _logger.LogError($"{ex.Message} of \n { Param.HttpPostUrl} \n");
                         Task.Delay(30_000).Wait();
                         result = retryCount == 0 ? true : false;
                     }
@@ -110,7 +113,7 @@ namespace TimecardServices.Workers
                 //TimeSpan timeTaken = stopwatch.Elapsed;
 
 
-                await Task.Delay((Parameter.Scantime+30) * 1000, stoppingToken);
+                await Task.Delay((Param.ScanLoopTime + 60) * 1000, stoppingToken);
             }
         }
     }

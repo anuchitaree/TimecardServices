@@ -8,9 +8,9 @@ namespace TimecardServices.DTO
 {
     internal class Settings
     {
-        public string UploadUrl { get; set; } = null!;
+        public string HttpPostUrl { get; set; } = null!;
         public string BackupFolderName { get; set; } = null!;
         public bool HistoryOnOff { get; set; } =true;
-        public Int32 ScanTime { get; set; } 
+        public Int32 ScanLoopTime { get; set; } 
     }
 }

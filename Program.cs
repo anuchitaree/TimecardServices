@@ -2,6 +2,7 @@
 using TimecardServices.Workers;
 
 
+
 IHost host = Host.CreateDefaultBuilder(args)
     .UseWindowsService()
     .ConfigureServices(services =>
@@ -18,6 +19,6 @@ IHost host = Host.CreateDefaultBuilder(args)
    
     .Build();
 
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+//AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 await host.RunAsync();

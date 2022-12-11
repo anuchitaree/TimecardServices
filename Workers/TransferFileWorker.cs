@@ -13,6 +13,7 @@ namespace TimecardServices.Workers
         public override Task StartAsync(CancellationToken cancellationToken)
         {
             CreateFolder.IsFolder();
+
             return base.StartAsync(cancellationToken);
         }
 
@@ -25,15 +26,19 @@ namespace TimecardServices.Workers
                 {
                     CreateFolder.IsFolder();
 
-                    string destinationPath = Parameter.ProcessFolder;
-                    string path = Parameter.FromFolder + "\\";
+                    string destinationPath = Param.ProcessFolder;
+
+                    string path = Param.FromFolder + "\\";
+
                     string[] fileLists = Directory.GetFiles(path);
+
                     if (fileLists.Length > 0)
                     {
 
                         foreach (var filename in fileLists)
                         {
                             string file = Path.GetFileName(filename);
+
                             string sourcefile = path + file;
                             string DestinationPath = destinationPath + "\\" + file;
 
@@ -56,7 +61,7 @@ namespace TimecardServices.Workers
                 }
 
 
-                await Task.Delay((Parameter.Scantime+10) *1000, stoppingToken);
+                await Task.Delay((Param.ScanLoopTime + 30) *1000, stoppingToken);
             }
         }
 
