@@ -6,8 +6,8 @@ namespace TimecardServices.Models
     public class LogRecord
     {
 
-        [Key]
-        public string? Id { get; set; } 
+        [Key, MaxLength(40)]
+        public string Id { get; set; } = null!;
 
         [Required]
         public DateTime Registdatetime { get; set; }
