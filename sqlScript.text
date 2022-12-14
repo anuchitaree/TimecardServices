@@ -1,0 +1,50 @@
+﻿USE [timecard]
+GO
+/****** Object:  Table [dbo].[__EFMigrationsHistory]    Script Date: 14/12/2022 8:49:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[__EFMigrationsHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[LogRecords]    Script Date: 14/12/2022 8:49:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[LogRecords](
+	[Id] [uniqueidentifier] NOT NULL,
+	[Registdatetime] [datetime2](7) NOT NULL,
+	[Result] [nvarchar](5) NOT NULL,
+	[Decription] [nvarchar](100) NOT NULL,
+ CONSTRAINT [PK_LogRecords] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TimecardRecords]    Script Date: 14/12/2022 8:49:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TimecardRecords](
+	[Id] [nvarchar](40) NOT NULL,
+	[EmpId] [nvarchar](7) NOT NULL,
+	[Date] [datetime2](7) NOT NULL,
+	[Direction] [nvarchar](1) NOT NULL,
+	[MachineSn] [nvarchar](4) NOT NULL,
+	[Status] [bit] NOT NULL,
+ CONSTRAINT [PK_TimecardRecords] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
