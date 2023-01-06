@@ -69,9 +69,9 @@ namespace TimecardServices.Workers
                                         {
                                             Id = s.Id,
                                             EmpId = s.EmpId,
-                                            Date = s.Date.ToString("yyyy-MM-dd"),
-                                            Direction = s.Direction,
+                                            DateTime = s.Date.ToString("yyyy-MM-ddTHH:mm:ss"),
                                             MachineSn = s.MachineSn,
+                                            ChildLineId=s.ChildLineId,
                                         };
                                         newRecords.Add(record);
 

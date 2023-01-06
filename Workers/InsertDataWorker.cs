@@ -69,15 +69,15 @@ namespace TimecardServices.Workers
         {
             Param.DbConnnectionString = _configuration.GetValue<string>("ConnectionString");
 
-            Param.HttpPostUrl = _configuration.GetValue<string>("Settings:HttpPostUrl");
+            Param.HttpPostUrl = _configuration.GetValue<string>("Settings:HttpPostUrl").Trim();
 
-            Param.BackupFolder = _configuration.GetValue<string>("Settings:BackupFolderName");
+            Param.BackupFolder = _configuration.GetValue<string>("Settings:BackupFolderName").Trim();
 
             Param.HistoryOnOff = _configuration.GetValue<bool>("Settings:HistoryOnOff");
 
             Param.ScanLoopTime = _configuration.GetValue<int>("Settings:ScanLoopTime");
 
-            Param.BaseFolder = _configuration.GetValue<string>("Settings:BaseFolder");
+            Param.BaseFolder = _configuration.GetValue<string>("Settings:BaseFolder").Trim();
 
             CreateFolder.IsFolder();
         }
@@ -92,8 +92,8 @@ namespace TimecardServices.Workers
 
                 foreach (string record in records)
                 {
-                    string[] parts = record.Split(',');  // ID , Direction ,date , hour , Machine  => 6000774,O,220403,1340,0011
-                    if (parts.Length == 5)
+                    string[] parts = record.Split(',');  // ID , Direction ,date , hour , Machine ,ChildLineId => 6000774,O,220403,1340,0011,4318-01
+                    if (parts.Length == 6)
                     {
                         string date = parts[2];
                         if (date.Length != 6 || isNum(date))
@@ -120,13 +120,16 @@ namespace TimecardServices.Workers
                         if (emp.Length != 7)
                             continue;
 
+                        string childLineId = parts[5];
+
                         var input = new TimecardRecord()
                         {
                             Id = Guid.NewGuid().ToString(),
                             EmpId = emp,
                             Date = (new DateTime(yy, mm, dd, hh, m, 0)),
-                            Direction = direction,
+                            ChildLineId = childLineId,
                             MachineSn = mc,
+                            Status=false,
 
                         };
                         newRecord.Add(input);

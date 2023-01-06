@@ -9,11 +9,11 @@ using TimecardServices.Data;
 
 #nullable disable
 
-namespace TimecardServices.Migrations.TimeCard
+namespace TimecardServices.Migrations
 {
     [DbContext(typeof(TimeCardContext))]
-    [Migration("20221214010100_InitialCreate1")]
-    partial class InitialCreate1
+    [Migration("20230106032828_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,13 +53,13 @@ namespace TimecardServices.Migrations.TimeCard
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("ChildLineId")
+                        .IsRequired()
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar(7)");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Direction")
-                        .IsRequired()
-                        .HasMaxLength(1)
-                        .HasColumnType("nvarchar(1)");
 
                     b.Property<string>("EmpId")
                         .IsRequired()

@@ -8,7 +8,7 @@ using TimecardServices.Data;
 
 #nullable disable
 
-namespace TimecardServices.Migrations.TimeCard
+namespace TimecardServices.Migrations
 {
     [DbContext(typeof(TimeCardContext))]
     partial class TimeCardContextModelSnapshot : ModelSnapshot
@@ -51,13 +51,13 @@ namespace TimecardServices.Migrations.TimeCard
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("ChildLineId")
+                        .IsRequired()
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar(7)");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Direction")
-                        .IsRequired()
-                        .HasMaxLength(1)
-                        .HasColumnType("nvarchar(1)");
 
                     b.Property<string>("EmpId")
                         .IsRequired()

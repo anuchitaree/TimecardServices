@@ -15,8 +15,8 @@ namespace TimecardServices.Models
         [Required]
         public DateTime Date { get; set; }
 
-        [Required,MaxLength(1)]
-        public string Direction { get; set; }=null!;
+        [Required,MaxLength(7)]
+        public string ChildLineId { get; set; }=null!;
 
         [Required,MaxLength(4)]
         public string MachineSn { get; set; } = null!;

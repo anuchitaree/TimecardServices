@@ -24,6 +24,8 @@
         public static string DbConnnectionString = "";
 
 
+      
+
         // if HistoryOnOff is true, files are kept here c:\TaffTimecard\
         public static string BackupFolder = "";  //depend on user
 

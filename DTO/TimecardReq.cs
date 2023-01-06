@@ -13,9 +13,11 @@ namespace TimecardServices.DTO
 
         public string EmpId { get; set; } = null!;
 
-        public string Date { get; set; } = null!;
+        public string DateTime { get; set; } = null!;
 
-        public string Direction { get; set; } = null!;
+        //public string Direction { get; set; } = null!;
+
+        public string ChildLineId { get; set; } = null!;
 
         public string MachineSn { get; set; } = null!;
     }

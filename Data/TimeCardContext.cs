@@ -11,8 +11,8 @@ namespace TimecardServices.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //Param.DbConnnectionString = "Server = localhost\\SQLEXPRESS,1433; user id = Admin; password = Admin; Database = Timecard; Encrypt = True; TrustServerCertificate = True";
-           
+          //  Param.DbConnnectionString = "Server=localhost\\SQLEXPRESS,1433;user id=Admin;password=Admin;Database=Timecard;Encrypt=True;TrustServerCertificate=True";
+
             optionsBuilder.UseSqlServer(Param.DbConnnectionString);
 
         }
