@@ -11,9 +11,11 @@ namespace TimecardServices.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-          //  Param.DbConnnectionString = "Server=localhost\\SQLEXPRESS,1433;user id=Admin;password=Admin;Database=Timecard;Encrypt=True;TrustServerCertificate=True";
+         
+            //Param.DbConnnectionString = "User ID =postgres;Server=localhost;Port=5432;Database=Timecard;Username=postgres;Password=admin;Integrated Security=true;Pooling=true;";
+            
+            optionsBuilder.UseNpgsql(Param.DbConnnectionString);
 
-            optionsBuilder.UseSqlServer(Param.DbConnnectionString);
 
         }
 

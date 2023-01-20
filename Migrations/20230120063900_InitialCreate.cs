@@ -13,10 +13,10 @@ namespace TimecardServices.Migrations
                 name: "LogRecords",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
-                    Registdatetime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Result = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
-                    Decription = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Id = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
+                    Registdatetime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Result = table.Column<string>(type: "character varying(5)", maxLength: 5, nullable: false),
+                    Decription = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,12 +27,12 @@ namespace TimecardServices.Migrations
                 name: "TimecardRecords",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    EmpId = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ChildLineId = table.Column<string>(type: "nvarchar(7)", maxLength: 7, nullable: false),
-                    MachineSn = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: false),
-                    Status = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    EmpId = table.Column<string>(type: "character varying(7)", maxLength: 7, nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ChildLineId = table.Column<string>(type: "character varying(7)", maxLength: 7, nullable: false),
+                    MachineSn = table.Column<string>(type: "character varying(4)", maxLength: 4, nullable: false),
+                    Status = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -67,7 +67,7 @@ namespace TimecardServices.Workers
 
         private void Initialize()
         {
-            Param.DbConnnectionString = _configuration.GetValue<string>("ConnectionString");
+            Param.DbConnnectionString = _configuration.GetValue<string>("PostgresConnectionString");
 
             Param.HttpPostUrl = _configuration.GetValue<string>("Settings:HttpPostUrl").Trim();
 
